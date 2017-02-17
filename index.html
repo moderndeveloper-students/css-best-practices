@@ -71,32 +71,20 @@ p {
 
 Hence, for the sake of consistency, clarity, and soundness of code, we consider adding semicolons to all the rules within a rule-set to be best practice.
 
-<h3>Comment Your Code</h3>
+<h3>Only Comment When Needed</h3>
 
-We are all in a pursuit to write self-descriptive, clean, and legible code that can be understood by other developers without difficulty. Adding comments goes a long way in making our code more understandable for others as well as for ourselves. Apart from describing the rules, CSS comments also act as labels or qualifiers that make searching for specific functionality in a CSS file easier.
+We are all in a pursuit to write self-descriptive, clean, and legible code that express our intention so well, that it does not need comments. Vanilla CSS does not provide too many tools, such as variables or functions, to be as expressive as other languages like JavaScript or Ruby could be. But that is not an excuse to place comments everywhere instead of write meaningful class or ID names which do not only make CSS more readable, but they also help to make the corresponding HTML easier to understand.
 
-As the number of style rules keeps growing, maintaining a CSS file can become overwhelming. While many developers can readily remember their own selectors, any developers inheriting the CSS will find it very difficult to comprehend and navigate their way if the previous developer has not left any clues. Commenting your code provides adequate context to the developer and reduces the trouble of trying to make sense of it later.
+As the number of style rules keeps growing, maintaining a CSS file can become overwhelming. While many developers can readily remember their own selectors, any developers inheriting the CSS will find it very difficult to comprehend and navigate their way if the previous developer has not left any clues. If your CSS file is growing too much, it is time to split it into several smaller and easier to handle files instead of dividing sections of the file with big banner comments. Methodologies like OOCSS, ITCSS or SMACSS, which we will look at later, can help to have a proper structured CSS. Redundant comments also do not helpi, they will only make your file larger forcing the reader to scroll more than if they would not be there.
+
+In addition, comments tend to degrade, even to the point of becoming a lie. This is not because developers are too lazy to mantain them, but just because they also tend to be non-local. If a developer is overriding a rule from another file, it is not obvious that there could be a hidden comment in that file and the comment gets outdated.
+
+Despite all that cases where comments are not desirable, there are some situations where comments can add some value to the code or help to understand the code intention. Some examples could be long nested selectors or complex shadow properties, which can be tricky to understand.
 
 The illustration blocks used in this chapter are good examples of using comments. Having the comments <code>/* BAD */</code> and <code>/* GOOD */</code> clearly demarcates the code and indicates the bad and the good code snippets.
 
 <pre lang="javascript" line="1">
-/* BAD */
-html {
-  background-color: #ffe5ff;
-  font-family: sans-serif;
-}
-
-.static-block{
-  position: static;
-}
-
-.fixed-block{
-  position: fixed;
-  right: 0px;
-  top: 0px;
-}
-
-/* GOOD */
+/* BAD - Redundant comments */
 
 /*Page-wide Style Rules*/
 html {
@@ -105,7 +93,6 @@ html {
 }
 
 /*Styling for Static Block*/
-
 .static-block{
   position: static;
 }
@@ -116,9 +103,33 @@ html {
   right: 0px;
   top: 0px;
 }
+
+/* GOOD */
+
+html {
+  background-color: #ffe5ff;
+  font-family: sans-serif;
+}
+
+.static-block{
+  position: static;
+}
+
+.fixed-block{
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+
+/* Style for the selected tab label */
+.vertical-tab__radio:checked:nth-of-type(1) ~ .vertical-tab__tabs > .vertical-tab__label:nth-of-type(1) {
+  background-color: white;
+  color: blue;
+}
+
 </pre>
 
-Although comments are not mandatory for making CSS work, they are very helpful to the folks presently working on the code and those who will work on it in the future. Making your code self-explanatory is a good practice and benefits everyone on a team in the long run.
+Avoiding unnecessary comments by writing expressive code and placing eventual helpful comments will help the folks presently working on the code and those who will work on it in the future. Making your code self-explanatory is a good practice and benefits everyone on a team in the long run.
 
 <h3>Avoid Inline Styling</h3>
 
